@@ -4,7 +4,8 @@ import type { User } from "@/types/User";
 
 export type UserContextType = {
   user: User | null;
-  setUser: (id: number) => void;
+  login: (userData: User) => void;
+  logout: () => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -12,16 +13,20 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, _setUser] = useState<User | null>(null);
-  const setUser = (id: number) => {
-    _setUser({
-      id,
-      name: `ユーザー${id}`,
-    });
+  const [user, setUser] = useState<User | null>(null);
+
+  const login = (userData: User) => {
+    setUser(userData);
+    // ここでcookieやlocalStorageに保存してもOK
+  };
+
+  const logout = () => {
+    setUser(null);
+    // cookieやlocalStorageをクリアしてもOK
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
   );
