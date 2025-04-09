@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 
-type Props = {
+export type Props = {
   start: number;
   end: number;
   hitCount: number;
