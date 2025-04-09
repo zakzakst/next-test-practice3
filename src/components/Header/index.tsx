@@ -1,5 +1,3 @@
-// TODO: 下記らへん作る
-// https://github.com/frontend-testing-book/nextjs/tree/main/src/components/layouts/BasicLayout/Header
 import { LinkButton } from "@/components/atoms/LinkButton";
 import { useUser } from "@/components/providers/User/UserProvider";
 import clsx from "clsx";

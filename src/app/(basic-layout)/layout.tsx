@@ -1,3 +1,5 @@
+// TODO: 下記あたりを反映する
+// https://github.com/frontend-testing-book/nextjs/blob/main/src/components/layouts/BasicLayout/index.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 
