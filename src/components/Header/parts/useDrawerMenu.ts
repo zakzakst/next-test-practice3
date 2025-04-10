@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useClickAway } from "react-use";
 
@@ -15,9 +15,9 @@ export const useDrawerMenu = () => {
     if (!isOpen) return;
     handleCloseMenu();
   });
-  const router = useRouter();
+  const pathname = usePathname();
   useEffect(() => {
     handleCloseMenu();
-  }, [handleCloseMenu, router.asPath]);
+  }, [handleCloseMenu, pathname]);
   return { menuRef, isOpen, handleCloseMenu, handleOpenMenu };
 };

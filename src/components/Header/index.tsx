@@ -1,7 +1,8 @@
+"use client";
 import { LinkButton } from "@/components/atoms/LinkButton";
 import { useUser } from "@/components/providers/User/UserProvider";
 import clsx from "clsx";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { Heading } from "./parts/Heading";
 import { LoginUser } from "./parts/LoginUser";
 import { Nav } from "./parts/Nav";
@@ -11,7 +12,7 @@ import { useDrawerMenu } from "./parts/useDrawerMenu";
 export const Header = () => {
   const { user } = useUser();
   const { menuRef, isOpen, handleCloseMenu, handleOpenMenu } = useDrawerMenu();
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <header className={styles.header}>
@@ -37,9 +38,7 @@ export const Header = () => {
           </div>
         </>
       ) : (
-        router.asPath !== "/login" && (
-          <LinkButton href="/login">ログイン</LinkButton>
-        )
+        pathname !== "/login" && <LinkButton href="/login">ログイン</LinkButton>
       )}
     </header>
   );
