@@ -1,10 +1,7 @@
 "use client";
 
 import { SelectFilterOption } from "@/components/molecules/SelectFilterOption";
-import {
-  // useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./styles.module.css";
 
 const options = [
@@ -13,7 +10,7 @@ const options = [
 ];
 
 export const OrderBy = () => {
-  // const { push } = useRouter();
+  const { push } = useRouter();
   const searchParams = useSearchParams();
   const orderByParam = searchParams.get("orderBy");
   const orderBy = typeof orderByParam === "string" ? orderByParam : "";
@@ -24,8 +21,10 @@ export const OrderBy = () => {
       selectProps={{
         defaultValue: orderBy,
         onChange: (event) => {
-          // push({ query: { ...query, orderBy: event.currentTarget.value } });
+          // push('', { query: { orderBy: event.currentTarget.value } });
+          // TODO: ソート変更の実装分からない。。setSearchParamsとか使う？
           console.log(event);
+          push(`/?${searchParams}`);
         },
       }}
       options={options}
