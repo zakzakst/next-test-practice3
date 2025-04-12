@@ -1,7 +1,9 @@
+"use client";
+
 import { parseAsPositiveInt } from "@/lib/util";
 import { PaginationProps } from "@/lib/util/pagination";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { AnchorHTMLAttributes } from "react";
 import styles from "./styles.module.css";
 
@@ -20,8 +22,9 @@ type Props = {
 };
 
 export const Pagination = ({ pathname, pagination }: Props) => {
-  const router = useRouter();
-  const page = parseAsPositiveInt(router.query.page) || 0;
+  const searchParams = useSearchParams();
+  const pageParam = searchParams.get("orderBy") || undefined;
+  const page = parseAsPositiveInt(pageParam) || 0;
   if (!pagination) return null;
   return (
     <nav aria-label="ページネーション">
@@ -30,7 +33,8 @@ export const Pagination = ({ pathname, pagination }: Props) => {
           <li key={index}>
             {typeof item === "number" ? (
               <Link
-                href={{ pathname, query: { ...router.query, page: item } }}
+                // href={{ pathname, query: { ...router.query, page: item } }}
+                href={{ pathname, query: { page: item } }}
                 {...isCurrent(page, item)}
               >
                 {item.toString()}
