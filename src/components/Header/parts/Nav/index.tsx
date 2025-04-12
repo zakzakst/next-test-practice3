@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { AnchorHTMLAttributes } from "react";
 import styles from "./styles.module.css";
 
@@ -13,7 +15,7 @@ type Props = {
 };
 
 export const Nav = ({ onCloseMenu }: Props) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   return (
     <nav aria-label="ナビゲーション" className={styles.nav}>
       <button
