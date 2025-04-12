@@ -11,3 +11,7 @@ export const parseAsPositiveInt = (q: string | string[] | undefined) => {
     return undefined;
   }
 };
+
+export const parseAsNonEmptyString = (q: string | string[] | undefined) => {
+  if (typeof q === "string" && q.length > 0) return q;
+};
