@@ -1,5 +1,10 @@
+"use client";
+
 import { SelectFilterOption } from "@/components/molecules/SelectFilterOption";
-import { useRouter } from "next/router";
+import {
+  // useRouter,
+  useSearchParams,
+} from "next/navigation";
 import styles from "./styles.module.css";
 
 const options = [
@@ -8,8 +13,10 @@ const options = [
 ];
 
 export const OrderBy = () => {
-  const { query, push } = useRouter();
-  const orderBy = typeof query.orderBy === "string" ? query.orderBy : "";
+  // const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const orderByParam = searchParams.get("orderBy");
+  const orderBy = typeof orderByParam === "string" ? orderByParam : "";
   return (
     <SelectFilterOption
       title="並び順"
@@ -17,7 +24,8 @@ export const OrderBy = () => {
       selectProps={{
         defaultValue: orderBy,
         onChange: (event) => {
-          push({ query: { ...query, orderBy: event.currentTarget.value } });
+          // push({ query: { ...query, orderBy: event.currentTarget.value } });
+          console.log(event);
         },
       }}
       options={options}

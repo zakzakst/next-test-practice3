@@ -1,5 +1,8 @@
+import { Posts } from "@/components/templates/Posts";
+import { postsResponseMock } from "@/mocks/post";
+
 const Page = () => {
-  return <div>Page</div>;
+  return <Posts {...postsResponseMock} />;
 };
 
 export default Page;
